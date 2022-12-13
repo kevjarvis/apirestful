@@ -1,0 +1,8 @@
+[
+  {
+    "nombre_producto": "agua",
+    "precio": 2000,
+    "thumbnail": "",
+    "id": 1
+  }
+]

@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+
+
+.form-slot {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}

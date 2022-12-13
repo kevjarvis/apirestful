@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API productos - Curso CoderHouse</title>
+    <link href="../dist/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="container mx-auto">
+      <form action="http:127.0.0.1:8080/api/productos" method="post" class="flex px-4 md:px-0 md:w-2/4 mx-auto flex-col align-middle gap-4">
+        <h1 class="text-3xl">Agregar productos a la API</h1>
+        <div class="form-slot">
+          <label for="name">Nombre producto</label>
+          <input
+            class="form-text rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Telescopio Nobel"
+          />
+        </div>
+
+        <div class="form-slot">
+          <label for="price">Precio</label>
+          <input
+            class="form-text rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            type="number"
+            name="price"
+            id="price"
+            min="0"
+            placeholder="$ 4000"
+          />
+        </div>
+
+        <div class="form-slot">
+          <label for="thumbnail">Imágen del producto</label>
+          <input type="file" name="thumbnail" id="thumbnail" />
+        </div>
+
+        <input class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit" value="Enviar">
+      </form>
+    </main>
+  </body>
+</html>
