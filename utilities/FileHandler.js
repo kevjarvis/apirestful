@@ -89,8 +89,8 @@ class FileHandler {
       const fileContent = await fs.promises.readFile(this.filename, 'utf-8')
       const bodyOfFile = JSON.parse(fileContent)
 
-      if (bodyOfFile.some(item => item.id === id)) {
-        const filteredData = bodyOfFile.filter(item => item.id !== id)
+      if (bodyOfFile.some(item => item.id == id)) {
+        const filteredData = bodyOfFile.filter(item => item.id != id)
         const newData = filteredData.length === 0 ? "" : JSON.stringify(filteredData, null, 2)
         await fs.promises.writeFile(this.filename, newData)
       } else { null }

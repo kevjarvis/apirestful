@@ -8,3 +8,12 @@
   flex-flow: column nowrap;
   gap: 0.5rem;
 }
+
+#toast-success {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  display: none;
+  transition: display 2s 0s ease;;
+}

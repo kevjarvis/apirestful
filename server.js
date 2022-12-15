@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const { param } = require('express/lib/request');
 
 // Importando modulos de utilidad
@@ -8,11 +9,11 @@ const router = express.Router();
 
 const app = express();
 const port = 8080;
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/productos', router);
-
 
 const DATABASE = 'databases/productos.txt';
 const products_handler = new FileHandler('./databases/productos.txt')
@@ -47,38 +48,39 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // hallar el recurse de req.params.id
   // y reemplazar en req.body
+  if (!(await products_handler.getByID(req.params.id))) {
+    res.send({error: 'producto no encontrado'})
+  };
+
   const product = products_handler.getByID(req.params.id);
   // validando que el body sea correcto
 
-  const requiredKeys = ['key1', 'key2', 'key3'];
+  const requiredKeys = ['title', 'price', 'thumbnail'];
 
   // Iteramos sobre la lista de claves necesarias
   for (const key of requiredKeys) {
-    // Verificamos si el cuerpo de la petición contiene la clave actual
-    if (!requestBody.hasOwnProperty(key)) {
-      // Si la clave no se encuentra en el cuerpo de la petición, retornamos false
+    if (!req.body.hasOwnProperty(key)) {
+      res.send({error: 'el body de la peticion es incorrecto'})
       return false;
     }
   }
 
-  // Si todas las claves necesarias se encuentran en el cuerpo de la petición, retornamos true
-  return true;
-
-
-  const keys_json = Object.keys(req.body)
-  const keys_correctas = ['title', 'price', 'thumbnail']
+  // Si todas las claves necesarias se encuentran en el cuerpo de la petición...
+  await products_handler.deleteByID(req.params.id)
+  const new_id = await products_handler.save(req.body)
 
   res.json({
     result: 'ok',
     message: 'producto modificado con éxito',
-    product: products_handler.getByID(id)
+    nuevo_id: new_id
   })
 })
 
 router.delete('/:id', async (req, res) => {
   // elminimar el recurso buscandolo con req.params.id
+  await products_handler.deleteByID(req.params.id);
   res.json({
     result: 'ok',
-    id: req.params.id
+    id: 'producto eliminado exitosamente'
   })
 })
