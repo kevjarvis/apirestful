@@ -1,0 +1,46 @@
+{{#> form }}
+  {{> title title="Agrega tus productos"}}
+  <div class="form-slot">
+    <label for="name">Nombre producto</label>
+    <input
+      class="form-text rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+      type="text"
+      name="title"
+      id="name"
+      placeholder="Telescopio Nobel"
+    />
+  </div>
+
+  <div class="form-slot">
+    <label for="price">Precio</label>
+    <input
+      class="form-text rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+      type="number"
+      name="price"
+      id="price"
+      min="0"
+      placeholder="$ 4000"
+    />
+  </div>
+
+  <div class="form-slot">
+    <label for="thumbnail">Imágen</label>
+    <input
+      class="form-text rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+      type="text"
+      name="thumbnail"
+      id="thumbnail"
+      placeholder="http://url.com/image.png"
+    />
+  </div>
+
+  <input id="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit" value="Enviar">
+
+  <hr/>
+  {{> button text="Ver lista de productos" link="/productos"}}
+{{/form}}
+
+{{> success_notification text="Producto agregado correctamente!"}}
+
+
+    
