@@ -1,10 +1,15 @@
 const express = require("express");
 const handlebars = require("express-handlebars");
 const request = require("request");
+const {Server: HttpServer} = require('http');
+const {Server: IOServer} = require('socket.io');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const httpServer = new HttpServer(app);
+const io = new IOServer(httpServer);
+io.serveClient(true);
 
 app.engine(
   "hbs",
@@ -26,6 +31,13 @@ app.get("/", (req, res) => {
 
 const PRODUCT_API_URI = "http://127.0.0.1:8080/api/productos/";
 
+const PORT = 3000;
+httpServer.listen(PORT, () => {
+  console.log(`Servidor inicializado en el puerto ${PORT}`);
+});
+
+
+
 app.get("/productos", (req, res) => {
 
   var options = {
@@ -43,28 +55,26 @@ app.get("/productos", (req, res) => {
   
 });
 
-app.post("/productos", async (req, res) => {
-  
+
+io.on('connection', (socket) => {
+  console.log(`[NEW_USSR]: Usuario ${socket.id} se ha conectado`)
+
+  socket.on('client:product-update', data => {
+    io.sockets.emit('server:render-products', data)
+  })
+
   var options = {
-    'method': 'POST',
+    'method': 'GET',
     'url': PRODUCT_API_URI,
     'headers': {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(req.body)
+    }
   };
-
+  
   request(options, function (error, response) {
     if (error) throw new Error(error);
+    io.socket.emit('server:startup-update', response.body)
   });
 
-  setTimeout(function () {
-    res.redirect("/");
-  }, 1500);
-  
-});
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor inicializado en el puerto ${PORT}`);
-});
+})

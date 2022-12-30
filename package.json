@@ -16,7 +16,8 @@
     "express-handlebars": "^6.0.6",
     "flowbite": "^1.5.5",
     "node-fetch": "^3.3.0",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "socket.io": "^4.5.4"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",

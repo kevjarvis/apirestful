@@ -1,18 +1,18 @@
 [
   {
-    "title": "Apple Watch",
+    "name": "Apple Watch",
     "price": "599",
     "thumbnail": "https://flowbite.com/docs/images/products/apple-watch.png",
     "id": 1
   },
   {
-    "title": "iMac",
+    "name": "iMac",
     "price": "899",
     "thumbnail": "https://flowbite.com/docs/images/products/imac.png",
     "id": 2
   },
   {
-    "title": "iPhone",
+    "name": "iPhone",
     "price": "999",
     "thumbnail": "https://flowbite.com/docs/images/products/iphone-12.png",
     "id": 3

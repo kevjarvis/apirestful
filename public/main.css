@@ -17,3 +17,33 @@
   display: none;
   transition: display 2s 0s ease;;
 }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #616161 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .scroll-fancy::-webkit-scrollbar {
+    
+    width: 6px;
+  }
+
+  .scroll-fancy::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scroll-fancy::-webkit-scrollbar-thumb {
+    background-color: #616161;
+    border-radius: 10px;
+  }
+
+  #webchat {
+    height: 500px;
+  }
+
+  #webchat-main {
+    height: calc(100% - 2.5rem);
+  }
