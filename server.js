@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
   
   request(options, function (error, response) {
     if (error) throw new Error(error);
-    io.socket.emit('server:startup-update', response.body)
+    io.emit('server:startup-update', response.body)
   });
 
 
