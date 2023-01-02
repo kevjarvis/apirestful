@@ -16,5 +16,53 @@
     "price": "999",
     "thumbnail": "https://flowbite.com/docs/images/products/iphone-12.png",
     "id": 3
+  },
+  {
+    "name": "",
+    "price": "",
+    "thumbnail": "",
+    "id": 4
+  },
+  {
+    "name": "Hola",
+    "price": "2",
+    "thumbnail": "de",
+    "id": 5
+  },
+  {
+    "name": "",
+    "price": "",
+    "thumbnail": "",
+    "id": 6
+  },
+  {
+    "name": "",
+    "price": "",
+    "thumbnail": "",
+    "id": 7
+  },
+  {
+    "name": "",
+    "price": "",
+    "thumbnail": "",
+    "id": 8
+  },
+  {
+    "name": "",
+    "price": "",
+    "thumbnail": "",
+    "id": 9
+  },
+  {
+    "name": "",
+    "price": "",
+    "thumbnail": "",
+    "id": 10
+  },
+  {
+    "name": "",
+    "price": "",
+    "thumbnail": "",
+    "id": 11
   }
 ]

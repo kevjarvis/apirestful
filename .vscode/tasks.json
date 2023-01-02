@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "presentation": {
+    "echo": false,
+    "reveal": "always",
+    "focus": false,
+    "panel": "dedicated",
+    "showReuseMessage": true
+  },
+  "tasks": [
+		{
+			"label": "Panel de control",
+			"dependsOn": [ "Tailwind Observer", "Run API", "Run Server" ],
+			// Marcar como tarea de construcción por defecto, al apretar ctrl+shift+b se creará
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"runOptions": { "runOn": "folderOpen" }
+		},
+		{
+			"label": "Tailwind Observer",
+			"type": "shell",
+			"command": "npx tailwindcss -i ./public/main.css -o ./dist/main.css --watch",
+			"isBackground": true,
+			"problemMatcher": [],
+			"presentation": {
+				"group": "Panel de control"
+			}
+
+		},
+		{
+			"label": "Run API",
+			"type": "shell",
+			"command": "node ./api.js",
+			"isBackground": true,
+			"problemMatcher": [],
+			"presentation": {
+				"group": "Panel de control"
+			}
+
+		},
+		{
+			"label": "Run Server",
+			"type": "shell",
+			"command": "node ./server.js",
+			"isBackground": true,
+			"problemMatcher": [],
+			"presentation": {
+				"group": "Panel de control"
+			}
+		}
+    
+  ]
+}

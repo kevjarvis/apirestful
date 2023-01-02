@@ -49,7 +49,6 @@ button.addEventListener("click", async function (e) {
 
 socket.on('server:render-products', (m) => {
   // llama a la función para renderizar el/los productos añadidos
-  console.log('yes')
   renderProducts(m)
 })
 
@@ -102,3 +101,61 @@ async function renderProducts (data) {
   
 }
 
+// Validar nombre chat
+
+const signUserButton = document.getElementById('send_username');
+signUserButton.addEventListener('click', async (e) => {
+  sessionStorage.setItem('username', document.getElementById('name_user').value )
+  socket.emit('client:open-chat', true)
+  e.preventDefault();
+  
+  // loadchat
+
+  await fetch('./templates/chatlayout.hbs')
+  .then(function(response) {
+    return response.text();
+  })
+  .then(function(template) {
+    const compiledTemplate = Handlebars.compile(template);
+
+    const html = compiledTemplate({})
+    const chatWrapper = document.getElementById('webchat-main');
+    chatWrapper.innerHTML = html;
+  } )
+})
+
+function sendMessage() {
+
+  const textarea = document.getElementById('textarea');
+
+  socket.emit('client:new-message', {
+    autor: sessionStorage.getItem('username'),
+    message: textarea.value
+  });
+
+  textarea.value = ''
+  
+}
+
+async function renderMessage(autor, message) {
+  await fetch('./templates/message.hbs')
+  .then(response => {
+    return response.text()
+  })
+  .then(template => {
+    const compiledTemplate = Handlebars.compile(template);
+    const html = compiledTemplate({
+      autor: autor,
+      mensaje: message
+    })
+    const chatlis = document.getElementById('webchat-body');
+    chatlis.innerHTML += html
+  })
+    let messageBody = document.querySelector("#webchat-body");
+  messageBody.scrollTop = messageBody.scrollHeight;
+}
+
+socket.on('server:new-message', data => {
+  renderMessage(data.autor, data.message)
+
+})

@@ -48,6 +48,8 @@ app.get("/productos", (req, res) => {
     }
   };
   
+  console.log(options)
+  
   request(options, function (error, response) {
     if (error) throw new Error(error);
     res.render("productos", {layout: "container", products : JSON.parse(response.body)})
@@ -76,5 +78,10 @@ io.on('connection', (socket) => {
     io.emit('server:startup-update', response.body)
   });
 
+  socket.on('client:new-message', data => {
+    io.sockets.emit('server:new-message', data)
+  })
+
 
 })
+
